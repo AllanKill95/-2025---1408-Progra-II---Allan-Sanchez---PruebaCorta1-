@@ -77,3 +77,30 @@ public class GestionamientoTareas {
         }
         if (count == 0) System.out.println("No hay tareas en este estado.");
     } //Agregamos los metodos de gestor de tareas y listamos las tareas//
+    public void marcarTareaComoCompletada(int indice) {
+        if (indice < 1 || indice > listaTareas.size()) {
+            System.out.println("Número inválido.");
+            return;
+        }
+        listaTareas.get(indice - 1).marcarComoCompletada();
+        System.out.println("✅ Tarea marcada como completada.");
+    }
+
+    public void editarTarea(int indice, String desc, String fecha, String prioridad, String categoria) {
+        if (indice < 1 || indice > listaTareas.size()) {
+            System.out.println("Número inválido.");
+            return;
+        }
+        listaTareas.get(indice - 1).editarTarea(desc, fecha, prioridad, categoria);
+        System.out.println("✅ Tarea editada con éxito.");
+    }
+
+    public void eliminarTarea(int indice) {
+        if (indice < 1 || indice > listaTareas.size()) {
+            System.out.println("Número inválido.");
+            return;
+        }
+        listaTareas.remove(indice - 1);
+        System.out.println("✅ Tarea eliminada con éxito.");
+    }
+//Aqui mostramos las tareas filtradas y cambiamos los estados//
