@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class GestionamientoTareas {
+public class GestorTareas {
 
 
     static class Tarea {
@@ -138,4 +138,63 @@ public class GestionamientoTareas {
         sc.nextLine();
         return num;
     }
-//
+//Metodos para leer la prioridad, categoria y enteros.//
+public void iniciar() {
+    int opcion;
+    do {
+        System.out.println("\n===== GESTOR DE TAREAS =====");
+        System.out.println("1. Agregar tarea");
+        System.out.println("2. Listar todas las tareas");
+        System.out.println("3. Marcar tarea como completada");
+        System.out.println("4. Editar tarea");
+        System.out.println("5. Listar solo tareas pendientes");
+        System.out.println("6. Listar solo tareas completadas");
+        System.out.println("7. Eliminar tarea");
+        System.out.println("8. Salir");
+        opcion = leerEntero("Seleccione una opción: ");
+
+        switch (opcion) {
+            case 1 -> {
+                System.out.print("Descripción: ");
+                String desc = sc.nextLine();
+                System.out.print("Fecha límite: ");
+                String fecha = sc.nextLine();
+                String prioridad = leerPrioridad();
+                String categoria = leerCategoria();
+                agregarTarea(new Tarea(desc, fecha, prioridad, categoria));
+                System.out.println("✅ Tarea agregada.");
+            }
+            case 2 -> listarTareas();
+            case 3 -> {
+                listarTareas();
+                marcarTareaComoCompletada(leerEntero("Número de tarea: "));
+            }
+            case 4 -> {
+                listarTareas();
+                int num = leerEntero("Número de tarea: ");
+                System.out.print("Nueva descripción: ");
+                String desc = sc.nextLine();
+                System.out.print("Nueva fecha límite: ");
+                String fecha = sc.nextLine();
+                String prioridad = leerPrioridad();
+                String categoria = leerCategoria();
+                editarTarea(num, desc, fecha, prioridad, categoria);
+            }
+            case 5 -> listarTareasPorEstado(false);
+            case 6 -> listarTareasPorEstado(true);
+            case 7 -> {
+                listarTareas();
+                eliminarTarea(leerEntero("Número de tarea: "));
+            }
+            case 8 -> System.out.println("Saliendo...");
+            default -> System.out.println("Opción inválida.");
+        }
+    } while (opcion != 8);
+}
+
+    // ===== main =====
+    public static void main(String[] args) {
+        new GestorTareas().iniciar();
+    }
+}
+//Aqui generamos el menu principal y el metodo main para iniciar la aplicacion//
