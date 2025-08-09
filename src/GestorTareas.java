@@ -104,3 +104,38 @@ public class GestionamientoTareas {
         System.out.println("✅ Tarea eliminada con éxito.");
     }
 //Aqui mostramos las tareas filtradas y cambiamos los estados//
+
+    private String leerPrioridad() {
+        while (true) {
+            System.out.print("Prioridad (Alta, Media, Baja): ");
+            String p = sc.nextLine().trim();
+            if (p.equalsIgnoreCase("Alta") || p.equalsIgnoreCase("Media") || p.equalsIgnoreCase("Baja")) {
+                return p.substring(0,1).toUpperCase() + p.substring(1).toLowerCase();
+            }
+            System.out.println("Entrada inválida.");
+        }
+    }
+
+    private String leerCategoria() {
+        while (true) {
+            System.out.print("Categoría (Trabajo, Estudio, Personal, Otro): ");
+            String c = sc.nextLine().trim();
+            if (c.equalsIgnoreCase("Trabajo") || c.equalsIgnoreCase("Estudio")
+                    || c.equalsIgnoreCase("Personal") || c.equalsIgnoreCase("Otro")) {
+                return c.substring(0,1).toUpperCase() + c.substring(1).toLowerCase();
+            }
+            System.out.println("Entrada inválida.");
+        }
+    }
+
+    private int leerEntero(String mensaje) {
+        System.out.print(mensaje);
+        while (!sc.hasNextInt()) {
+            System.out.print("Ingrese un número válido: ");
+            sc.next();
+        }
+        int num = sc.nextInt();
+        sc.nextLine();
+        return num;
+    }
+//
