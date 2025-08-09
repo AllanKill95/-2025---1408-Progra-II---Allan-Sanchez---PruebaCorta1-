@@ -44,3 +44,36 @@ public class GestionamientoTareas {
         }
     //Generamos los constructores y los metodos de la clase Tarea//
     }
+    private ArrayList<Tarea> listaTareas = new ArrayList<>();
+    private Scanner sc = new Scanner(System.in);
+
+    // ===== Métodos obligatorios =====
+    public void agregarTarea(Tarea t) { listaTareas.add(t); }
+
+    public void listarTareas() {
+        if (listaTareas.isEmpty()) {
+            System.out.println("No hay tareas registradas.");
+            return;
+        }
+        System.out.println("\n=== LISTA DE TAREAS ===");
+        for (int i = 0; i < listaTareas.size(); i++) {
+            System.out.println("[" + (i + 1) + "]");
+            listaTareas.get(i).mostrarInfo();
+            System.out.println("-------------------------");
+        }
+    }
+
+    public void listarTareasPorEstado(boolean completadas) {
+        String titulo = completadas ? "\n=== TAREAS COMPLETADAS ===" : "\n=== TAREAS PENDIENTES ===";
+        System.out.println(titulo);
+        int count = 0;
+        for (int i = 0; i < listaTareas.size(); i++) {
+            if (listaTareas.get(i).isCompletada() == completadas) {
+                System.out.println("[" + (i + 1) + "]");
+                listaTareas.get(i).mostrarInfo();
+                System.out.println("-------------------------");
+                count++;
+            }
+        }
+        if (count == 0) System.out.println("No hay tareas en este estado.");
+    } //Agregamos los metodos de gestor de tareas y listamos las tareas//
